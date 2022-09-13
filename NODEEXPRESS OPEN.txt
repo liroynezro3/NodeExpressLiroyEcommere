@@ -1,0 +1,12 @@
+npm init --y       (לשנות בפאקט גייסון ב SCRIPTS ל Start:"node app"
+
+
+npm i express
+
+
+
+npm i mongoose לחיבור מונגוס
+npm install bcrypt
+npm i joy - לבצע וולדיזציה
+
+npm install cors --save

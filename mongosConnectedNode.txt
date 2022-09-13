@@ -1,0 +1,32 @@
+
+npm i mongoose
+אופציה 1@@@@@@@@@@@:
+ב APP לעשות:
+const db= require("./db/mongoConnect");
+
+ב mongoConnect לעשות:
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://liroynezro3:159159159@cluster0.hkdyg.mongodb.net/test');
+
+const db=mongoose.connection;
+db.on('error',console.error.bind(console,'connection error'));
+db.once('open', ()=>{
+    console.log("mongo connected")
+});
+
+module.exports = db;
+
+אופציה 2 ויותר חדשה @@@@@@@@@@@:
+npm i mongoose
+
+ב APP לעשות :
+const {main}=require("./db/mongoConnect");   או require("./db/mongoConnect"); שזה יותר נכון
+
+ב mongoConnect לעשות:
+const mongoose = require('mongoose');
+main().catch(err => console.log(err));
+async function main() {
+  await mongoose.connect('mongodb+srv://liroynezro3:159159@cluster0.hkdyg.mongodb.net/test');
+  console.log("Mongo Connecteddd")
+}
+
