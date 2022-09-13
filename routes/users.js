@@ -1,5 +1,5 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt")
 const {UserModel/*הסכמה שמייצרת ובודקת במסד נתונים*/, validUser, validLogin, genToken } = require("../models/UsersModel");
 const jwt = require("jsonwebtoken")
 const{authToken}=require("../auth/authToken");
