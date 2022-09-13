@@ -28,4 +28,10 @@ const server = http.createServer(app);
 //הגדרנו פורט
 let port = process.env.PORT || "3000";
 //מאזינים לשרת בפורט 3000
-server.listen(port);
+server.listen(process.env.PORT || 3000, function () {
+  console.log(
+    "express server listening on port $d in $d mode",
+    this.address().port,
+    app.settings.env
+  );
+});
