@@ -14,10 +14,7 @@ const app = express();
 app.use(express.json());
 // נגדיר את תקיית הפאבליק כתקייה סטטית שניתן לשים בה קבצים לצד לקוח יהיה גישה
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors({
-  origin:"*",
-  credentials: true
-}));
+app.use(cors());
 routsInit(app);
 //הגדרנו רואט של העמוד בית
 //req->מה שנקבל בדרך כלל מהצד לקוח או הדפדפן ברוא
@@ -29,6 +26,6 @@ app.get("/", (req, res) => {
 //מייצרים שרת שמשתמש במשתנה אפ שיש לו את כל היכולות המיוחדות של האקספרס
 const server = http.createServer(app);
 //הגדרנו פורט
-let port = process.env.PORT || 5000;
+let port = process.env.PORT || "3000";
 //מאזינים לשרת בפורט 3000
 server.listen(port);
