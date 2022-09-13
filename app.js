@@ -29,6 +29,6 @@ app.get("/", (req, res) => {
 //מייצרים שרת שמשתמש במשתנה אפ שיש לו את כל היכולות המיוחדות של האקספרס
 const server = http.createServer(app);
 //הגדרנו פורט
-let port = process.env.PORT || "3000";
+let port = process.env.PORT || 5000;
 //מאזינים לשרת בפורט 3000
 server.listen(port);
