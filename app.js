@@ -5,14 +5,14 @@ const path = require("path"); //יודע לקחת כתובת ולעשות עלי
 //משתנה שיש לו יכולת להפעיל שרת
 const http = require("http");
 require("./db/mongoConnect");
-//הוספתי על מנת שאני יוכל לגשת מצד לקוח ולעקוף את הדפדפן
-app.use(cors());
 const { routsInit } = require("./routes/config_route"); //קורה לפונקציה שנקראת ראוטס איניט שמפעילה את שאר הרואטים שיצרתי
 
 //יצרנו משתנה שיש לו את היכולת של אקספרסס כולל האזנה לראוט
 const app = express();
 // הגדרת פירסור מידע כגייסון אם הוא יכול
 app.use(express.json());
+//הוספתי על מנת שאני יוכל לגשת מצד לקוח ולעקוף את הדפדפן
+app.use(cors());
 // נגדיר את תקיית הפאבליק כתקייה סטטית שניתן לשים בה קבצים לצד לקוח יהיה גישה
 app.use(express.static(path.join(__dirname, "public")));
 routsInit(app);
