@@ -5,8 +5,9 @@ const path = require("path"); //יודע לקחת כתובת ולעשות עלי
 //משתנה שיש לו יכולת להפעיל שרת
 const http = require("http");
 require("./db/mongoConnect");
-const { routsInit } = require("./routes/config_route"); //קורה לפונקציה שנקראת ראוטס איניט שמפעילה את שאר הרואטים שיצרתי
 //הוספתי על מנת שאני יוכל לגשת מצד לקוח ולעקוף את הדפדפן
+app.use(cors());
+const { routsInit } = require("./routes/config_route"); //קורה לפונקציה שנקראת ראוטס איניט שמפעילה את שאר הרואטים שיצרתי
 
 //יצרנו משתנה שיש לו את היכולת של אקספרסס כולל האזנה לראוט
 const app = express();
@@ -14,7 +15,6 @@ const app = express();
 app.use(express.json());
 // נגדיר את תקיית הפאבליק כתקייה סטטית שניתן לשים בה קבצים לצד לקוח יהיה גישה
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors());
 routsInit(app);
 //הגדרנו רואט של העמוד בית
 //req->מה שנקבל בדרך כלל מהצד לקוח או הדפדפן ברוא
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 //מייצרים שרת שמשתמש במשתנה אפ שיש לו את כל היכולות המיוחדות של האקספרס
 const server = http.createServer(app);
 //הגדרנו פורט
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 3000;
 //מאזינים לשרת בפורט 3000
 server.listen(port, function () {
   console.log(
