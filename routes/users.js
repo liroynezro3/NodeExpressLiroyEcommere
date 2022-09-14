@@ -27,7 +27,7 @@ router.post("/registar", async (req, res) => {
     user.pass = "*******";
     let newToken = genToken(user._id)//מייצר תוקן לפי מה שאני מכניס EMAIL/ID
     console.log(newToken)
-    res.json({userinfo:user,token:newToken,expriseIn:3600});
+    res.json({userinfo:user,token:newToken,expiresIn:3600});
   } 
   catch (err) {
     console.log(err);
@@ -52,7 +52,7 @@ router.post("/login",async(req,res) =>{
   }
   //נחזיר הודעה שהכל בסדר ונייצר טוקן
   let newToken = genToken(user._id)//מייצר תוקן לפי מה שאני מכניס EMAIL/ID
-  res.json({token:newToken,expriseIn:3600000});
+  res.json({token:newToken,expiresIn:3600});
 })
 
 router.get("/userInfo",authToken, async(req,res)=>{
