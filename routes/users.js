@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   //הנתיב ביחס למה שהגדרתי בקונפיג רואט
-  res.json({ msg: "users work 3333" });
+  res.json({ message: "users work 3333" });
 })
 
 router.post("/registar", async (req, res) => {
@@ -19,7 +19,7 @@ router.post("/registar", async (req, res) => {
   try {
     let userEmailCheack = await UserModel.findOne({email:req.body.email})
     if(userEmailCheack){
-      return(res.status(400).json({ err: "Email Already in System"}))
+      return(res.status(400).json({message: "Email Already in System"}))
     }
     let user = new UserModel(req.body);
     user.pass = await bcrypt.hash(user.pass, 10);
@@ -31,7 +31,7 @@ router.post("/registar", async (req, res) => {
   } 
   catch (err) {
     console.log(err);
-    return res.status(400).json({ err: "Email Already in System or there another problem" });
+    return res.status(400).json({message: "Email Already in System or there another problem" });
     }
 });
 
@@ -43,12 +43,12 @@ router.post("/login",async(req,res) =>{
   //נבדוק אם המייל שנשלח בבאדי קיים במסד נתונים
   let user = await UserModel.findOne({email:req.body.email})
   if(!user){
-    return res.status(401).json({err:"user not found"});
+    return res.status(401).json({message:"user not found"});
   }
   //נבדוק אם הסיסמא שנשלחה מתאימה להצפנה במסד נתונים  
   let passValid= await bcrypt.compare(req.body.pass,user.pass)//user מה שנמצא במסד נתונים
   if(!passValid){
-    return res.status(401).json({err:"Password wrong"});
+    return res.status(401).json({message:"Password wrong"});
   }
   //נחזיר הודעה שהכל בסדר ונייצר טוקן
   let newToken = genToken(user._id)//מייצר תוקן לפי מה שאני מכניס EMAIL/ID

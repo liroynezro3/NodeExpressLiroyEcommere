@@ -1,4 +1,5 @@
 const express = require("express");
+const { authToken } = require("../auth/authToken");
 const { Dummy_Items_Arr } = require("../data/AllProductsData");
 const router = express.Router();
 const { ProductsModel, validProducts } = require("../models/ProductsModel");
@@ -26,14 +27,15 @@ router.get("/itemID", async (req, res) => {
   });
   res.json(temp_ar);
 });
-router.post("/", async (req, res) => {//http://127.0.0.1:3000/products להעלות מוצר
+router.post("/",authToken, async (req, res) => {//http://127.0.0.1:3000/products להעלות מוצר
+  console.log(req.tokenData)//מגיע מה AUTHTOKEN
   let validBody = validProducts(req.body);
   if (validBody.error) {
     return res.status(400).json(validBody.error.details);
   }
   let products = await ProductsModel.findOne({id:req.body.id})
   if(products){
-    return res.status(401).json({msg:"this id used already"});
+    return res.status(401).json({message:"this id used already"});
   }
   try {
     let product = new ProductsModel(req.body);
