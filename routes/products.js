@@ -35,7 +35,7 @@ router.post("/",authToken, async (req, res) => {//http://127.0.0.1:3000/products
   }
   let products = await ProductsModel.findOne({id:req.body.id})
   if(products){
-    return res.status(401).json({message:"this id used already"});
+    return res.status(401).json({message:"this id used already please try other ID"});
   }
   try {
     let product = new ProductsModel(req.body);
