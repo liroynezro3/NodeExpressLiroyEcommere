@@ -22,7 +22,7 @@ exports.validOrders = (_bodydata) => {
     Name: Joi.string().min(3).max(99).required(),
     OrderTotalPrice: Joi.number().min(0.1).max(200000).required(),
     PhoneNumber: Joi.string().min(3).max(15),
-    PostalCode: Joi.string().min(5).max(5).required(),
+    PostalCode: Joi.string().min(3).max(10).required(),
     Street: Joi.string().min(3).max(99).required(),
     orderedItem: Joi.array()
   });
