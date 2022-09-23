@@ -47,9 +47,13 @@ router.post("/",authToken, async (req, res) => {//http://127.0.0.1:3000/products
   }
 });
 
-router.delete("/:idDel", async (req, res) => {//http://127.0.0.1:3000/products/:idDel
+router.delete("/:idDel",authToken,async (req, res) => {//http://127.0.0.1:3000/products/:idDel 100/101/102
   try {
-    let data = await ProductsModel.deleteOne({ _id: req.params.idDel });
+    let products = await ProductsModel.findOne({id:req.params.idDel})
+    if(!products){
+      return res.status(401).json({message:"Product not found"});
+    }
+    let data = await ProductsModel.deleteOne({ id: req.params.idDel });
     //אם יש הצלחה נקבל מאפיין של אן = 1
     res.json(data);
   } catch (err) {
