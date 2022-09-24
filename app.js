@@ -11,7 +11,7 @@ const cors = require("cors");
 //יצרנו משתנה שיש לו את היכולת של אקספרסס כולל האזנה לראוט
 const app = express();
 // הגדרת פירסור מידע כגייסון אם הוא יכול
-app.use(express.json())
+app.use(express.json({ limit: "11mb" }))
 // נגדיר את תקיית הפאבליק כתקייה סטטית שניתן לשים בה קבצים לצד לקוח יהיה גישה 
 app.use(express.static(path.join(__dirname,"public")));
 app.use(cors());
