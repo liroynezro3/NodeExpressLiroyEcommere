@@ -52,7 +52,7 @@ router.post("/login",async(req,res) =>{
   }
   //נחזיר הודעה שהכל בסדר ונייצר טוקן
   let newToken = genToken(user._id)//מייצר תוקן לפי מה שאני מכניס EMAIL/ID
-  res.json({token:newToken,expiresIn:3600});
+  res.json({token:newToken,expiresIn:3600,userName:user.name,email:user.email});
 })
 
 router.get("/userInfo",authToken, async(req,res)=>{

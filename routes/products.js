@@ -19,8 +19,8 @@ router.get("/Category", async (req, res) => {
   });
   res.json(temp_ar);
 });
-router.get("/itemID", async (req, res) => { 
-  let idQ = req.query.id; //http://127.0.0.1:3000/products/itemid/?id=102
+router.get("/itemID", async (req, res) => { //http://127.0.0.1:3000/products/itemid/?id=102
+  let idQ = req.query.id; 
   let data = await ProductsModel.find({});
   let temp_ar = data.filter((item) => {
     return item.id == idQ;
