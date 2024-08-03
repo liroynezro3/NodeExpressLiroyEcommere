@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   res.json({ message: "users work 3333" });
 })
 
-router.post("/registar", async (req, res) => {
+router.post("/register", async (req, res) => {
   //req.body - מה שנשלח מהצד לקוח
   let validBody = validUser(req.body);
   if (validBody.error) {
